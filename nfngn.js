@@ -25,3 +25,15 @@ async function searchImages(randomOne = false) {
             imagesDiv.innerHTML = "<p>No images found 😢</p>"; // Если картинок не найдено
             return;
         }
+ // Создаём элементы <img> для каждой найденной картинки
+        data.results.forEach((photo) => {
+            const img = document.createElement("img");
+            img.src = photo.urls.regular;
+            img.alt = query;
+            imagesDiv.appendChild(img);
+        });
+    } catch (error) {
+        console.error("Error fetching images:", error);
+        alert("Something went wrong while fetching the images. Please try again later.");
+    }
+}
